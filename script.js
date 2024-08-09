@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   displayRecentRooms();
-  initializeEmojiPicker();
 });
 
 let currentUsername = 'Anonymous';
@@ -183,7 +182,7 @@ async function fetchData() {
         newMessage.appendChild(messageContent);
         display.appendChild(newMessage);
       });
-      //twemoji.parse(display); // Render emojis
+      twemoji.parse(display); // Render emojis
     }
   } catch (error) {
     console.error('Error fetching messages:', error);
@@ -213,42 +212,32 @@ function generateRoomCode() {
 
 // Parse markup for formatting and emojis
 function parseMarkup(text) {
-  // Bold
   text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   text = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
 
-  // Italic
-  text = text.replace(/\*(.*?)\*\*/g, '<em>$1</em>');
+  text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
   text = text.replace(/_(.*?)_/g, '<em>$1</em>');
 
-  // Strikethrough
   text = text.replace(/~~(.*?)~~/g, '<del>$1</del>');
 
-  // Headers
   text = text.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
   text = text.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
   text = text.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
 
-  // Unordered List
   text = text.replace(/^\* (.*?)$/gm, '<ul><li>$1</li></ul>');
   text = text.replace(/^- (.*?)$/gm, '<ul><li>$1</li></ul>');
   text = text.replace(/<\/ul>\n<ul>/g, '');
 
-  // Ordered List
   text = text.replace(/^\d+\. (.*?)$/gm, '<ol><li>$1</li></ol>');
   text = text.replace(/<\/ol>\n<ol>/g, '');
 
-  // Links
   text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
 
-  // Images
   text = text.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto;">');
 
-  // Emojis
-  text = text.replace(/:([a-zA-Z0-9_+-]+):/g, (match, p1) => {
-    const emojiUrl = `https://twemoji.maxcdn.com/v/latest/svg/${twemoji.convert.toCodePoint(p1)}.svg`;
-    return `<img src="${emojiUrl}" class="emoji" alt="${p1}">`;
-  });
-
+  text = text.replace(/:smile:/g, '😊');
+  text = text.replace(/:sob:/g, '😭');
+  text = text.replace(/:pensive:/g, '😔');
+  text = text.replace(/:heart:/g, '❤️');
   return text;
 }
