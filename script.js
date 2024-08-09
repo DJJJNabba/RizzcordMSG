@@ -136,12 +136,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const message = document.getElementById('messageInput').value;
     if (message.trim() !== '') {
       try {
-        const response = await fetch(`/api/rooms/${roomCode}`, {
+        const response = await fetch(`/.netlify/functions/postRoomMessage/${roomCode}`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ username: currentUsername, color: currentNameColor, message })
+          body: JSON.stringify({ username: currentUsername, color: currentNameColor, message }),
         });
         const result = await response.json();
         console.log(result.message);
