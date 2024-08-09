@@ -182,7 +182,6 @@ async function fetchData() {
         newMessage.appendChild(messageContent);
         display.appendChild(newMessage);
       });
-      twemoji.parse(display); // Render emojis
     }
   } catch (error) {
     console.error('Error fetching messages:', error);
