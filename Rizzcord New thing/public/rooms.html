@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizzcord - Rooms</title>
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header id="banner">
+    <img src="https://i.ibb.co/Wp2hHTB/RIZZcord.png" id="logo">
+  </header>
+
+  <nav id="navbar">
+    <a href="/index.html">Chat</a>
+    <a href="/rooms.html">Rooms</a>
+    <a id="settingsBtn" class="settings-btn">Settings</a>
+    <a href="/trips.html">About</a>
+  </nav>
+
+  <div class="room-container">
+    <h2>Join a Room</h2>
+    <input type="text" id="roomCodeInput" placeholder="Enter Room Code">
+    <button onclick="joinRoom()">Join Room</button>
+
+    <h2>Create a Room</h2>
+    <button onclick="createRoom()">Create Room</button>
+
+    <h2>Recent Rooms</h2>
+    <div id="recentRooms"></div>
+  </div>
+
+  <div id="settingsPopup" class="settings-popup">
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="Enter Username">
+    <label for="nameColor">Name Color:</label>
+    <input type="color" id="nameColor" value="#FFFFFF">
+    <button id="saveSettings">Save</button>
+    <button id="closeSettings">Close</button>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
